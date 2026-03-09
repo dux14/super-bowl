@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pixelify+Sans:wght@500&display=swap');
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Bodoni Moda', serif;
+
+}
+
+#Boton {
+    position: absolute;
+    font-family: 'Bodoni Moda', serif;
+    background-color: black;
+}
+
+
+button{
+   font-family: 'Pixelify Sans', serif;
+   background-color: black;
+   color: red;
+   height: 20vh;
+   width: 80vh;
+   font-size: 100px;
+}
+
+button:hover{
+    box-shadow: 0px 5px 15px rgba(232, 230, 230, 0.911);
+    cursor: pointer;
+}

@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../assets/Estadio-2025.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ===== Botón Volver ===== */
+.btn-volver {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  font-family: 'Pixelify Sans', serif;
+  background-color: black;
+  color: red;
+  text-decoration: none;
+  padding: 12px 28px;
+  font-size: clamp(16px, 3vw, 28px);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-volver:hover {
+  box-shadow: 0px 5px 15px rgba(232, 230, 230, 0.911);
+  transform: scale(1.05);
+}
+
+.btn-volver:active {
+  transform: scale(0.97);
+}
+
+/* ===== Personajes ===== */
+.personajes {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: 100vh;
+  padding: 0 20px;
+}
+
+.personaje {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.personaje img {
+  max-height: 80vh;
+  max-width: 45vw;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.7));
+}
+
+/* ===== Imágenes clickeables ===== */
+.img-clickeable {
+  cursor: pointer;
+  transition: filter 0.3s ease, transform 0.2s ease;
+}
+
+.img-clickeable:hover {
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
+  transform: scale(1.03);
+}
+
+.img-clickeable:active {
+  transform: scale(0.98);
+}
+
+/* ===== Popup de texto (personajes) ===== */
+.popup {
+  position: absolute;
+  bottom: 20%;
+  width: 320px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 20px 18px;
+  color: #fff;
+  font-family: 'Pixelify Sans', serif;
+  font-size: 14px;
+  line-height: 1.6;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.popup-derecha {
+  left: 100%;
+  margin-left: 10px;
+}
+
+.popup-izquierda {
+  right: 100%;
+  margin-right: 10px;
+}
+
+.popup.activo {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.popup p {
+  margin: 0;
+}
+
+.popup-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 22px;
+  color: red;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.popup-close:hover {
+  transform: scale(1.3);
+}
+
+.popup::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.popup::-webkit-scrollbar-thumb {
+  background: rgba(255, 0, 0, 0.4);
+  border-radius: 3px;
+}
+
+/* ===== Botones en la tribuna ===== */
+.tribuna-btn {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+  animation: tribunaPulse 3s ease-in-out infinite;
+}
+
+.tribuna-btn:hover {
+  background: rgba(255, 255, 0, 0.35);
+  transform: scale(1.25);
+  box-shadow: 0 0 18px rgba(255, 255, 0, 0.5);
+  animation: none;
+}
+
+.tribuna-btn:active {
+  transform: scale(0.95);
+}
+
+.tribuna-icono {
+  font-size: 20px;
+  filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
+}
+
+@keyframes tribunaPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ===== Botón en el marcador ===== */
+.marcador-btn {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-family: 'Pixelify Sans', serif;
+  font-size: clamp(12px, 2vw, 20px);
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: 8px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  animation: marcadorGlow 2.5s ease-in-out infinite;
+}
+
+.marcador-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  animation: none;
+}
+
+.marcador-btn:active {
+  transform: translateX(-50%) scale(0.96);
+}
+
+@keyframes marcadorGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 215, 0, 0.2); }
+  50% { box-shadow: 0 0 18px rgba(255, 215, 0, 0.5); }
+}
+
+/* ===== Overlay (imagen y video) ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.overlay.activo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay-contenido {
+  position: relative;
+  max-width: 85vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.3), 0 10px 40px rgba(0, 0, 0, 0.8);
+  animation: overlayIn 0.4s ease;
+}
+
+@keyframes overlayIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.overlay-contenido img {
+  display: block;
+  max-width: 85vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.overlay-video-contenido {
+  width: 80vw;
+  max-width: 900px;
+}
+
+.overlay-video-contenido video {
+  width: 100%;
+  border-radius: 12px;
+  outline: none;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 32px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 210;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.overlay-close:hover {
+  transform: scale(1.3);
+  color: red;
+}

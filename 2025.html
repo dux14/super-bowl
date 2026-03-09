@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Super Ball - 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/2025.css">
+  </head>
+  <body>
+
+    <!-- Botón de volver -->
+    <a href="eleccion.html" class="btn-volver">
+      ← VOLVER
+    </a>
+
+    <!-- Botones ocultos en la tribuna -->
+    <button class="tribuna-btn" style="top:30%; left:10%;" onclick="abrirImagen('assets/fotoken1.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+    <button class="tribuna-btn" style="top:24%; left:75%;" onclick="abrirImagen('assets/fotoken2.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+    <button class="tribuna-btn" style="top:36%; left:30%;" onclick="abrirImagen('assets/fotoken3.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+
+    <!-- Botón en el marcador para el video -->
+    <button class="marcador-btn" onclick="abrirVideo('')">
+      ▶ VER VIDEO
+    </button>
+
+    <!-- Personajes -->
+    <div class="personajes">
+
+      <!-- Kendrick -->
+      <div class="personaje izquierda">
+        <div class="popup popup-derecha" id="popup-kendrick">
+          <span class="popup-close" onclick="cerrarPopup('kendrick')">&times;</span>
+          <p>La presentación de Kendrick Lamar en el show de medio tiempo del Super Bowl puede entenderse también como una protesta en la medida en que puso en el centro la experiencia de la comunidad afroamericana en Estados Unidos. A lo largo de su carrera, Lamar ha abordado repetidamente cómo el color de piel ha influido históricamente en las oportunidades, el trato institucional y la representación cultural dentro del país. En ese contexto, su presencia en uno de los escenarios más vistos del mundo funciona como una reivindicación simbólica: un artista negro utilizando un espacio tradicionalmente asociado con el patriotismo estadounidense para recordar que la historia del país también está marcada por desigualdades raciales. Esto adquiere un significado político particular frente al discurso promovido por Donald Trump y sectores de su movimiento, que con frecuencia han minimizado o rechazado la idea de racismo estructural en Estados Unidos. Así, el espectáculo puede leerse como un contraste entre dos narrativas: por un lado, una visión de Estados Unidos que se presenta como homogénea y ya reconciliada con su pasado racial, y por otro, la que Lamar representa, que insiste en que el color de piel sigue influyendo en la vida de millones de personas. De esta forma, la presentación no solo fue entretenimiento, sino también una intervención cultural que utilizó la música, la imagen y el simbolismo para cuestionar quién tiene voz en la narrativa nacional y cómo se reconocen las experiencias de las comunidades racializadas dentro del país.</p>
+        </div>
+        <img src="assets/Kendrick-removebg-preview.png" alt="Kendrick" class="img-clickeable" onclick="togglePopup('kendrick')">
+      </div>
+
+      <!-- Trump -->
+      <div class="personaje derecha">
+        <div class="popup popup-izquierda" id="popup-trump">
+          <span class="popup-close" onclick="cerrarPopup('trump')">&times;</span>
+          <p>Una posible explicación de por qué Donald Trump no reaccionó públicamente ni armó un escándalo frente a la presentación de Kendrick Lamar en el Super Bowl es que hacerlo habría amplificado aún más un mensaje que muchos interpretaron como una crítica política y racial directa. La música y el discurso artístico de Lamar suelen abordar temas como el racismo estructural, la desigualdad y la experiencia de las comunidades afroamericanas en Estados Unidos, por lo que una reacción fuerte por parte de Trump podría haber reforzado precisamente el debate sobre esas problemáticas y darle mayor visibilidad al mensaje del artista. En ese sentido, el silencio también puede leerse como una decisión estratégica: evitar convertir la presentación en una confrontación política directa que dominara la conversación pública y que, además, pudiera interpretarse como una respuesta a una denuncia sobre discriminación racial.</p>
+        </div>
+        <img src="assets/Trump-removebg-preview.png" alt="Trump" class="img-clickeable" onclick="togglePopup('trump')">
+      </div>
+
+    </div>
+
+    <!-- Overlay para imagen de tribuna -->
+    <div class="overlay" id="overlay-imagen" onclick="cerrarOverlay()">
+      <div class="overlay-contenido" onclick="event.stopPropagation()">
+        <span class="overlay-close" onclick="cerrarOverlay()">&times;</span>
+        <img id="overlay-img" src="" alt="Foto tribuna">
+      </div>
+    </div>
+
+    <!-- Overlay para video -->
+    <div class="overlay" id="overlay-video" onclick="cerrarOverlayVideo()">
+      <div class="overlay-contenido overlay-video-contenido" onclick="event.stopPropagation()">
+        <span class="overlay-close" onclick="cerrarOverlayVideo()">&times;</span>
+        <video id="overlay-vid" controls>
+          <source src="" type="video/mp4">
+        </video>
+        <p class="video-placeholder-msg" id="video-placeholder-msg" style="display:none;">Video próximamente...</p>
+      </div>
+    </div>
+
+    <script>
+      /* === Popups de personajes === */
+      function togglePopup(nombre) {
+        const popup = document.getElementById('popup-' + nombre);
+        const yaActivo = popup.classList.contains('activo');
+        document.querySelectorAll('.popup').forEach(p => p.classList.remove('activo'));
+        if (!yaActivo) popup.classList.add('activo');
+      }
+
+      function cerrarPopup(nombre) {
+        document.getElementById('popup-' + nombre).classList.remove('activo');
+      }
+
+      /* === Overlay de imagen (tribuna) === */
+      function abrirImagen(src) {
+        const overlay = document.getElementById('overlay-imagen');
+        document.getElementById('overlay-img').src = src;
+        overlay.classList.add('activo');
+      }
+
+      function cerrarOverlay() {
+        document.getElementById('overlay-imagen').classList.remove('activo');
+      }
+
+      /* === Overlay de video (marcador) === */
+      function abrirVideo(src) {
+        const overlay = document.getElementById('overlay-video');
+        const video = document.getElementById('overlay-vid');
+        const msg = document.getElementById('video-placeholder-msg');
+
+        if (!src) {
+          // Placeholder — no hay video todavía
+          video.style.display = 'none';
+          msg.style.display = 'block';
+          overlay.classList.add('activo');
+          return;
+        }
+
+        msg.style.display = 'none';
+        video.style.display = 'block';
+        video.querySelector('source').src = src;
+        video.load();
+        overlay.classList.add('activo');
+        video.play();
+      }
+
+      function cerrarOverlayVideo() {
+        const overlay = document.getElementById('overlay-video');
+        const video = document.getElementById('overlay-vid');
+        video.pause();
+        video.currentTime = 0;
+        overlay.classList.remove('activo');
+      }
+    </script>
+
+  </body>
+</html>

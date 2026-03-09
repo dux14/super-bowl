@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pixelify+Sans:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../assets/IMG_9143.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== Botones ===== */
+.botones-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.botones-container a {
+  text-decoration: none;
+}
+
+.botones-container button {
+  font-family: 'Pixelify Sans', serif;
+  background-color: black;
+  color: red;
+  height: 20vh;
+  width: 40vw;
+  max-width: 500px;
+  font-size: clamp(40px, 8vw, 100px);
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.botones-container button:hover {
+  box-shadow: 0px 5px 15px rgba(232, 230, 230, 0.911);
+  transform: scale(1.05);
+}
+
+.botones-container button:active {
+  transform: scale(0.97);
+}

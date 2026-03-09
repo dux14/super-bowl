@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Super Ball - 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/2026.css">
+  </head>
+  <body>
+
+    <!-- Botón de volver -->
+    <a href="eleccion.html" class="btn-volver">
+      ← VOLVER
+    </a>
+
+    <!-- Botones ocultos en la tribuna (posiciones fijas sobre el background) -->
+    <button class="tribuna-btn" style="top:28%; left:8%;" onclick="abrirImagen('assets/fotobad1.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+    <button class="tribuna-btn" style="top:22%; left:78%;" onclick="abrirImagen('assets/fotobad2.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+    <button class="tribuna-btn" style="top:35%; left:25%;" onclick="abrirImagen('assets/fotobad3.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+    <button class="tribuna-btn" style="top:32%; left:68%;" onclick="abrirImagen('assets/fotobad4.jpeg')">
+      <span class="tribuna-icono">📸</span>
+    </button>
+
+    <!-- Botón en el marcador para el video -->
+    <button class="marcador-btn" onclick="abrirVideo('assets/bad bunny video.mp4')">
+      ▶ VER VIDEO
+    </button>
+
+    <!-- Personajes -->
+    <div class="personajes">
+
+      <!-- Bad Bunny -->
+      <div class="personaje izquierda">
+        <div class="popup popup-derecha" id="popup-badbunny">
+          <span class="popup-close" onclick="cerrarPopup('badbunny')">&times;</span>
+          <p>La presentación de Bad Bunny en el Super Bowl LIV puede interpretarse como una protesta política porque utilizó uno de los escenarios mediáticos más influyentes del mundo para visibilizar no solo las luchas internas de Puerto Rico, sino también las tensiones políticas entre la isla y Estados Unidos. Al aparecer con símbolos como la bandera puertorriqueña y referencias a las movilizaciones sociales de 2019, el artista convirtió su actuación en una forma de reivindicación de identidad y resistencia. Además, su presencia también puede leerse como una crítica indirecta a las políticas migratorias y discursos nacionalistas promovidos por el gobierno de Donald Trump, que han afectado a comunidades latinas, utilizando la cultura y la música para cuestionar esas posturas desde un espacio tradicionalmente dominado por narrativas estadounidenses.</p>
+        </div>
+        <img src="assets/Badbunny-removebg-preview.png" alt="Bad Bunny" class="img-clickeable" onclick="togglePopup('badbunny')">
+      </div>
+
+      <!-- Trump -->
+      <div class="personaje derecha">
+        <div class="popup popup-izquierda" id="popup-trump">
+          <span class="popup-close" onclick="cerrarPopup('trump')">&times;</span>
+          <p>La presentación de Bad Bunny en el Super Bowl LIV resultó molesta para Donald Trump y para parte de sus seguidores vinculados al movimiento Make America Great Again porque interpretaron el espectáculo como una politización de un evento considerado "patriótico" y representativo de Estados Unidos. El uso visible de símbolos de Puerto Rico y la reivindicación de identidades latinas fue visto por ese sector como un desafío a la idea de una cultura estadounidense homogénea, especialmente en un contexto en el que el discurso político de Trump enfatizaba el nacionalismo y políticas más restrictivas hacia la inmigración. Por esa razón, surgió la idea de promover una transmisión o narrativa "all-American", enfocada únicamente en símbolos y artistas percibidos como tradicionalmente estadounidenses, como una forma de contrarrestar lo que consideraban una apropiación política del evento y reafirmar su visión de identidad nacional.</p>
+        </div>
+        <img src="assets/Trump-removebg-preview.png" alt="Trump" class="img-clickeable" onclick="togglePopup('trump')">
+      </div>
+
+    </div>
+
+    <!-- Overlay para imagen de tribuna -->
+    <div class="overlay" id="overlay-imagen" onclick="cerrarOverlay()">
+      <div class="overlay-contenido" onclick="event.stopPropagation()">
+        <span class="overlay-close" onclick="cerrarOverlay()">&times;</span>
+        <img id="overlay-img" src="" alt="Foto tribuna">
+      </div>
+    </div>
+
+    <!-- Overlay para video -->
+    <div class="overlay" id="overlay-video" onclick="cerrarOverlayVideo()">
+      <div class="overlay-contenido overlay-video-contenido" onclick="event.stopPropagation()">
+        <span class="overlay-close" onclick="cerrarOverlayVideo()">&times;</span>
+        <video id="overlay-vid" controls>
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <script>
+      /* === Popups de personajes === */
+      function togglePopup(nombre) {
+        const popup = document.getElementById('popup-' + nombre);
+        const yaActivo = popup.classList.contains('activo');
+        document.querySelectorAll('.popup').forEach(p => p.classList.remove('activo'));
+        if (!yaActivo) popup.classList.add('activo');
+      }
+
+      function cerrarPopup(nombre) {
+        document.getElementById('popup-' + nombre).classList.remove('activo');
+      }
+
+      /* === Overlay de imagen (tribuna) === */
+      function abrirImagen(src) {
+        const overlay = document.getElementById('overlay-imagen');
+        document.getElementById('overlay-img').src = src;
+        overlay.classList.add('activo');
+      }
+
+      function cerrarOverlay() {
+        document.getElementById('overlay-imagen').classList.remove('activo');
+      }
+
+      /* === Overlay de video (marcador) === */
+      function abrirVideo(src) {
+        const overlay = document.getElementById('overlay-video');
+        const video = document.getElementById('overlay-vid');
+        video.querySelector('source').src = src;
+        video.load();
+        overlay.classList.add('activo');
+        video.play();
+      }
+
+      function cerrarOverlayVideo() {
+        const overlay = document.getElementById('overlay-video');
+        const video = document.getElementById('overlay-vid');
+        video.pause();
+        video.currentTime = 0;
+        overlay.classList.remove('activo');
+      }
+    </script>
+
+  </body>
+</html>
