@@ -1,54 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pixelify+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+/* ===== Reset ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===== Pixel clip-path (reusable) ===== */
+:root {
+  --clip-8: polygon(
+    8px 0, calc(100% - 8px) 0,
+    100% 8px, 100% calc(100% - 8px),
+    calc(100% - 8px) 100%, 8px 100%,
+    0 calc(100% - 8px), 0 8px
+  );
+  --clip-4: polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  );
+  --red-primary: #ef4444;
+  --red-dark: #7f1d1d;
+  --red-glow: rgba(239, 68, 68, 0.5);
+  --red-dim: rgba(239, 68, 68, 0.6);
+}
+
+/* ===== Body / Background ===== */
 body {
-  background-image: url('../assets/IMG_9143.jpg');
+  background-image: url('../assets/background_eleccion.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ===== Scanlines overlay ===== */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.4) 2px,
+    rgba(0, 0, 0, 0.4) 4px
+  );
+}
+
+/* ===== Main content ===== */
+.content {
+  position: relative;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  padding: 16px;
 }
 
-/* ===== Botones ===== */
+/* ===== Pixel Box (outer border) ===== */
+.pixel-box-outer {
+  position: relative;
+  padding: 3px;
+  background: #000;
+  clip-path: var(--clip-8);
+}
+
+.pixel-box {
+  position: relative;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 40px 32px;
+  clip-path: var(--clip-8);
+}
+
+@media (min-width: 768px) {
+  .pixel-box {
+    padding: 56px 64px;
+  }
+}
+
+/* ===== Decorative pixel corners ===== */
+.corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--red-primary);
+  z-index: 2;
+}
+.corner-tl { top: 12px; left: 12px; }
+.corner-tr { top: 12px; right: 12px; }
+.corner-bl { bottom: 12px; left: 12px; }
+.corner-br { bottom: 12px; right: 12px; }
+
+/* ===== Title ===== */
+.title-area {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: clamp(18px, 5vw, 32px);
+  color: var(--red-primary);
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  font-weight: normal;
+  text-shadow: 0 0 20px var(--red-glow);
+}
+
+.subtitle {
+  font-size: clamp(8px, 2vw, 12px);
+  color: rgba(248, 113, 113, 0.8);
+  letter-spacing: 4px;
+}
+
+/* ===== Buttons Container ===== */
 .botones-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.botones-container a {
+@media (min-width: 520px) {
+  .botones-container {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+/* ===== Pixel Button ===== */
+.pixel-btn-link {
   text-decoration: none;
 }
 
-.botones-container button {
-  font-family: 'Pixelify Sans', serif;
-  background-color: black;
-  color: red;
-  height: 20vh;
-  width: 40vw;
-  max-width: 500px;
-  font-size: clamp(40px, 8vw, 100px);
-  border: none;
+.pixel-btn {
+  position: relative;
   cursor: pointer;
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.botones-container button:hover {
-  box-shadow: 0px 5px 15px rgba(232, 230, 230, 0.911);
-  transform: scale(1.05);
+/* Shadow / depth layer */
+.pixel-btn-shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background: var(--red-dark);
+  clip-path: var(--clip-4);
+  transition: transform 0.1s ease;
 }
 
-.botones-container button:active {
-  transform: scale(0.97);
+/* Button face */
+.pixel-btn-face {
+  position: relative;
+  border: 2px solid var(--red-primary);
+  background: #000;
+  padding: 24px 40px;
+  clip-path: var(--clip-4);
+  transition: all 0.1s ease;
+}
+
+@media (min-width: 768px) {
+  .pixel-btn-face {
+    padding: 32px 56px;
+  }
+}
+
+.pixel-btn-face span {
+  display: block;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(20px, 5vw, 36px);
+  color: var(--red-primary);
+  transition: color 0.1s ease;
+}
+
+/* Hover */
+.pixel-btn-link:hover .pixel-btn-shadow {
+  transform: translate(-2px, -2px);
+}
+
+.pixel-btn-link:hover .pixel-btn-face {
+  border-color: #f87171;
+  background: rgba(127, 29, 29, 0.3);
+}
+
+.pixel-btn-link:hover .pixel-btn-face span {
+  color: #f87171;
+  text-shadow: 0 0 15px var(--red-glow);
+}
+
+/* Active / pressed */
+.pixel-btn-link:active .pixel-btn-shadow {
+  transform: translate(-4px, -4px);
+}
+
+.pixel-btn-link:active .pixel-btn-face {
+  transform: translate(2px, 2px);
+}
+
+/* ===== Footer ===== */
+.footer-text {
+  margin-top: 32px;
+  font-size: clamp(7px, 1.5vw, 10px);
+  letter-spacing: 3px;
+  color: var(--red-dim);
+  animation: blink 1.5s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }

@@ -1,31 +1,183 @@
-@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Pixelify+Sans:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== Pixel clip-path (reusable) ===== */
+:root {
+  --clip-8: polygon(
+    8px 0, calc(100% - 8px) 0,
+    100% 8px, 100% calc(100% - 8px),
+    calc(100% - 8px) 100%, 8px 100%,
+    0 calc(100% - 8px), 0 8px
+  );
+  --clip-4: polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  );
+  --red-primary: #ef4444;
+  --red-dark: #7f1d1d;
+  --red-glow: rgba(239, 68, 68, 0.5);
+}
+
+/* ===== Body ===== */
 body {
-  background-color: black;
+  background-color: #000;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ===== Scanlines ===== */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.06;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 0, 0, 0.15) 2px,
+    rgba(255, 0, 0, 0.15) 4px
+  );
+}
+
+/* ===== Content ===== */
+.content {
+  position: relative;
+  z-index: 10;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  font-family: "Bodoni Moda", serif;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 16px;
 }
 
-#Boton {
+/* ===== Pixel Box ===== */
+.pixel-box-outer {
+  position: relative;
+  padding: 3px;
+  background: var(--red-dark);
+  clip-path: var(--clip-8);
+  animation: boxGlow 3s ease-in-out infinite;
+}
+
+@keyframes boxGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.15); }
+  50% { box-shadow: 0 0 30px rgba(239, 68, 68, 0.3); }
+}
+
+.pixel-box {
+  position: relative;
+  background: rgba(0, 0, 0, 0.97);
+  padding: 40px 32px;
+  clip-path: var(--clip-8);
+}
+
+@media (min-width: 768px) {
+  .pixel-box {
+    padding: 56px 64px;
+  }
+}
+
+/* ===== Decorative pixel corners ===== */
+.corner {
   position: absolute;
-  font-family: "Bodoni Moda", serif;
-  background-color: black;
+  width: 6px;
+  height: 6px;
+  background: var(--red-primary);
+  z-index: 2;
+}
+.corner-tl { top: 10px; left: 10px; }
+.corner-tr { top: 10px; right: 10px; }
+.corner-bl { bottom: 10px; left: 10px; }
+.corner-br { bottom: 10px; right: 10px; }
+
+/* ===== Pixel Button ===== */
+.pixel-btn-link {
+  text-decoration: none;
+  display: block;
 }
 
-button {
-  font-family: "Pixelify Sans", serif;
-  background-color: black;
-  color: red;
-  height: auto;
-  width: auto;
-  padding: 20px 40px;
-  font-size: clamp(40px, 8vw, 100px);
-}
-
-button:hover {
-  box-shadow: 0px 5px 15px rgba(232, 230, 230, 0.911);
+.pixel-btn {
+  position: relative;
   cursor: pointer;
+}
+
+.pixel-btn-shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background: var(--red-dark);
+  clip-path: var(--clip-4);
+  transition: transform 0.1s ease;
+}
+
+.pixel-btn-face {
+  position: relative;
+  border: 2px solid var(--red-primary);
+  background: #000;
+  padding: 20px 40px;
+  clip-path: var(--clip-4);
+  transition: all 0.1s ease;
+}
+
+@media (min-width: 768px) {
+  .pixel-btn-face {
+    padding: 28px 56px;
+  }
+}
+
+.pixel-btn-face span {
+  display: block;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(16px, 4vw, 28px);
+  color: var(--red-primary);
+  transition: color 0.1s ease;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%, 100% { text-shadow: 0 0 5px rgba(239, 68, 68, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(239, 68, 68, 0.6); }
+}
+
+/* Hover */
+.pixel-btn-link:hover .pixel-btn-shadow {
+  transform: translate(-2px, -2px);
+}
+
+.pixel-btn-link:hover .pixel-btn-face {
+  border-color: #f87171;
+  background: rgba(127, 29, 29, 0.3);
+}
+
+.pixel-btn-link:hover .pixel-btn-face span {
+  color: #f87171;
+  text-shadow: 0 0 20px var(--red-glow);
+  animation: none;
+}
+
+/* Active */
+.pixel-btn-link:active .pixel-btn-shadow {
+  transform: translate(-4px, -4px);
+}
+
+.pixel-btn-link:active .pixel-btn-face {
+  transform: translate(2px, 2px);
 }

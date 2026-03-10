@@ -2,21 +2,65 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Super Ball - Elección</title>
+    <title>Super Bowl - Elección</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/eleccion.css">
+    <link rel="stylesheet" href="css/audio-controls.css">
   </head>
-  <body>
+  <body data-bg-track="assets/main_theme.mp3">
 
-    <!-- Botones centrados -->
-    <div class="botones-container">
-      <a href="2025.html">
-        <button>2025</button>
-      </a>
-      <a href="2026.html">
-        <button>2026</button>
-      </a>
+    <!-- Scanlines retro overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Main pixel-bordered container -->
+      <div class="pixel-box-outer">
+        <div class="pixel-box">
+
+          <!-- Decorative pixel corners -->
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+
+          <!-- Title -->
+          <div class="title-area">
+            <h1 class="title">SUPER BOWL</h1>
+            <p class="subtitle">SELECT YEAR</p>
+          </div>
+
+          <!-- Buttons -->
+          <div class="botones-container">
+            <a href="2025.html" class="pixel-btn-link">
+              <div class="pixel-btn">
+                <div class="pixel-btn-shadow"></div>
+                <div class="pixel-btn-face">
+                  <span>2025</span>
+                </div>
+              </div>
+            </a>
+            <a href="2026.html" class="pixel-btn-link">
+              <div class="pixel-btn">
+                <div class="pixel-btn-shadow"></div>
+                <div class="pixel-btn-face">
+                  <span>2026</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <p class="footer-text">PRESS START</p>
     </div>
 
+    <script src="js/audio-manager.js"></script>
   </body>
 </html>
