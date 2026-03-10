@@ -2,11 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Super Ball - 2026</title>
+    <title>Super Bowl - 2026</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/2026.css">
+    <link rel="stylesheet" href="css/audio-controls.css">
   </head>
-  <body>
+  <body data-bg-track="assets/atmospher_sound.mp3">
 
     <!-- Botón de volver -->
     <a href="eleccion.html" class="btn-volver">
@@ -101,6 +105,10 @@
       function abrirVideo(src) {
         const overlay = document.getElementById('overlay-video');
         const video = document.getElementById('overlay-vid');
+
+        // Fade out background audio
+        if (window.fadeOutBgAudio) window.fadeOutBgAudio(500);
+
         video.querySelector('source').src = src;
         video.load();
         overlay.classList.add('activo');
@@ -113,8 +121,12 @@
         video.pause();
         video.currentTime = 0;
         overlay.classList.remove('activo');
+
+        // Fade in background audio
+        if (window.fadeInBgAudio) window.fadeInBgAudio(500);
       }
     </script>
 
+    <script src="js/audio-manager.js"></script>
   </body>
 </html>

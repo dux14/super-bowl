@@ -1,0 +1,46 @@
+/* ===== Audio Toggle Button — Pixel Style ===== */
+.audio-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 150;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  border: 2px solid var(--red-primary, #ef4444);
+  clip-path: var(--clip-4, polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  ));
+  color: var(--red-primary, #ef4444);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.3s ease;
+  box-shadow: 3px 3px 0 var(--red-dark, #7f1d1d);
+  animation: audioTogglePulse 3s ease-in-out infinite;
+}
+
+.audio-toggle-btn:hover {
+  background: rgba(127, 29, 29, 0.4);
+  border-color: #f87171;
+  transform: scale(1.1);
+  box-shadow: 2px 2px 0 var(--red-dark, #7f1d1d), 0 0 15px rgba(239, 68, 68, 0.4);
+  animation: none;
+}
+
+.audio-toggle-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 0 var(--red-dark, #7f1d1d);
+}
+
+@keyframes audioTogglePulse {
+  0%, 100% { box-shadow: 3px 3px 0 var(--red-dark, #7f1d1d); }
+  50% { box-shadow: 3px 3px 0 var(--red-dark, #7f1d1d), 0 0 12px rgba(239, 68, 68, 0.25); }
+}

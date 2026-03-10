@@ -1,11 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@500&display=swap');
 
+/* ===== Reset ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===== Pixel clip-paths ===== */
+:root {
+  --clip-8: polygon(
+    8px 0, calc(100% - 8px) 0,
+    100% 8px, 100% calc(100% - 8px),
+    calc(100% - 8px) 100%, 8px 100%,
+    0 calc(100% - 8px), 0 8px
+  );
+  --clip-4: polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  );
+  --red-primary: #ef4444;
+  --red-dark: #7f1d1d;
+  --red-glow: rgba(239, 68, 68, 0.5);
+}
+
+/* ===== Body ===== */
 body {
   background-image: url('../assets/Estadio-2025.png');
   background-size: cover;
@@ -18,30 +39,40 @@ body {
   overflow: hidden;
 }
 
-/* ===== Botón Volver ===== */
+/* ===== Botón Volver (pixel style) ===== */
 .btn-volver {
   position: fixed;
   top: 20px;
   left: 20px;
   z-index: 100;
-  font-family: 'Pixelify Sans', serif;
-  background-color: black;
-  color: red;
   text-decoration: none;
-  padding: 12px 28px;
-  font-size: clamp(16px, 3vw, 28px);
-  border: 2px solid rgba(255, 0, 0, 0.3);
-  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.btn-volver {
+  font-family: 'Press Start 2P', monospace;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: var(--red-primary);
+  padding: 12px 24px;
+  font-size: clamp(10px, 2vw, 14px);
+  border: 2px solid var(--red-primary);
+  clip-path: var(--clip-4);
   cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 3px 3px 0 var(--red-dark);
 }
 
 .btn-volver:hover {
-  box-shadow: 0px 5px 15px rgba(232, 230, 230, 0.911);
-  transform: scale(1.05);
+  background: rgba(127, 29, 29, 0.4);
+  border-color: #f87171;
+  color: #f87171;
+  box-shadow: 2px 2px 0 var(--red-dark);
+  text-shadow: 0 0 10px var(--red-glow);
 }
 
 .btn-volver:active {
-  transform: scale(0.97);
+  box-shadow: 0px 0px 0 var(--red-dark);
+  transform: translate(2px, 2px);
 }
 
 /* ===== Personajes ===== */
@@ -82,27 +113,27 @@ body {
   transform: scale(0.98);
 }
 
-/* ===== Popup de texto (personajes) ===== */
+/* ===== Popup de texto (personajes) — pixel style ===== */
 .popup {
   position: absolute;
   bottom: 20%;
-  width: 320px;
+  width: 340px;
   max-height: 60vh;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1px solid rgba(255, 0, 0, 0.4);
-  border-radius: 12px;
-  padding: 20px 18px;
+  background: rgba(0, 0, 0, 0.92);
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  clip-path: var(--clip-8);
+  padding: 24px 20px;
   color: #fff;
   font-family: 'Pixelify Sans', serif;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.7;
   z-index: 50;
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px);
   transition: opacity 0.4s ease, transform 0.4s ease;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.15), 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
 .popup-derecha {
@@ -127,17 +158,19 @@ body {
 
 .popup-close {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 10px;
+  right: 14px;
   font-size: 22px;
-  color: red;
+  font-family: 'Press Start 2P', monospace;
+  color: var(--red-primary);
   cursor: pointer;
   line-height: 1;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
 }
 
 .popup-close:hover {
   transform: scale(1.3);
+  text-shadow: 0 0 8px var(--red-glow);
 }
 
 .popup::-webkit-scrollbar {
@@ -149,7 +182,7 @@ body {
 }
 
 .popup::-webkit-scrollbar-thumb {
-  background: rgba(255, 0, 0, 0.4);
+  background: rgba(239, 68, 68, 0.4);
   border-radius: 3px;
 }
 
@@ -159,8 +192,9 @@ body {
   width: 44px;
   height: 44px;
   border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  clip-path: var(--clip-4);
+  background: rgba(239, 68, 68, 0.15);
   backdrop-filter: blur(2px);
   cursor: pointer;
   z-index: 10;
@@ -172,9 +206,9 @@ body {
 }
 
 .tribuna-btn:hover {
-  background: rgba(255, 255, 0, 0.35);
+  background: rgba(239, 68, 68, 0.4);
   transform: scale(1.25);
-  box-shadow: 0 0 18px rgba(255, 255, 0, 0.5);
+  box-shadow: 0 0 18px var(--red-glow);
   animation: none;
 }
 
@@ -183,7 +217,7 @@ body {
 }
 
 .tribuna-icono {
-  font-size: 20px;
+  font-size: 35px;
   filter: drop-shadow(0 0 3px rgba(0,0,0,0.5));
 }
 
@@ -199,20 +233,20 @@ body {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  font-family: 'Pixelify Sans', serif;
-  font-size: clamp(12px, 2vw, 20px);
-  background: rgba(0, 0, 0, 0.7);
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(8px, 1.5vw, 14px);
+  background: rgba(0, 0, 0, 0.85);
   color: #ffd700;
-  border: 2px solid rgba(255, 215, 0, 0.4);
-  border-radius: 8px;
-  padding: 10px 24px;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  clip-path: var(--clip-4);
+  padding: 12px 28px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   animation: marcadorGlow 2.5s ease-in-out infinite;
 }
 
 .marcador-btn:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   transform: translateX(-50%) scale(1.08);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
   animation: none;
@@ -227,14 +261,14 @@ body {
   50% { box-shadow: 0 0 18px rgba(255, 215, 0, 0.5); }
 }
 
-/* ===== Overlay (imagen y video) ===== */
+/* ===== Overlay (imagen y video) — pixel style ===== */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.88);
   z-index: 200;
   display: flex;
   align-items: center;
@@ -253,9 +287,10 @@ body {
   position: relative;
   max-width: 85vw;
   max-height: 85vh;
-  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 40px rgba(255, 0, 0, 0.3), 0 10px 40px rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--red-primary);
+  clip-path: var(--clip-8);
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.2), 0 10px 40px rgba(0, 0, 0, 0.8);
   animation: overlayIn 0.4s ease;
 }
 
@@ -269,7 +304,6 @@ body {
   max-width: 85vw;
   max-height: 85vh;
   object-fit: contain;
-  border-radius: 12px;
 }
 
 .overlay-video-contenido {
@@ -279,7 +313,6 @@ body {
 
 .overlay-video-contenido video {
   width: 100%;
-  border-radius: 12px;
   outline: none;
 }
 
@@ -287,7 +320,8 @@ body {
   position: absolute;
   top: 10px;
   right: 16px;
-  font-size: 32px;
+  font-size: 28px;
+  font-family: 'Press Start 2P', monospace;
   color: #fff;
   cursor: pointer;
   z-index: 210;
@@ -297,14 +331,15 @@ body {
 
 .overlay-close:hover {
   transform: scale(1.3);
-  color: red;
+  color: var(--red-primary);
+  text-shadow: 0 0 10px var(--red-glow);
 }
 
 /* ===== Placeholder de video ===== */
 .video-placeholder-msg {
   color: #ffd700;
-  font-family: 'Pixelify Sans', serif;
-  font-size: clamp(18px, 3vw, 28px);
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(12px, 2vw, 20px);
   text-align: center;
   padding: 60px 30px;
 }
