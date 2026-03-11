@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/2025.css">
     <link rel="stylesheet" href="css/audio-controls.css">
   </head>
@@ -18,20 +18,26 @@
     </a>
 
     <!-- Botones ocultos en la tribuna -->
-    <button class="tribuna-btn" style="top:30%; left:10%;" onclick="abrirImagen('assets/fotoken1.jpeg')">
+    <button class="tribuna-btn" style="top:20%; left:10%;" onclick="abrirImagen('assets/fotoken1.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
-    <button class="tribuna-btn" style="top:24%; left:75%;" onclick="abrirImagen('assets/fotoken2.jpeg')">
+    <button class="tribuna-btn" style="top:14%; left:75%;" onclick="abrirImagen('assets/fotoken2.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
-    <button class="tribuna-btn" style="top:36%; left:30%;" onclick="abrirImagen('assets/fotoken3.jpeg')">
+    <button class="tribuna-btn" style="top:26%; left:30%;" onclick="abrirImagen('assets/fotoken3.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
 
-    <!-- Botón en el marcador para el video -->
-    <button class="marcador-btn" onclick="abrirVideo('')">
-      ▶ VER VIDEO
-    </button>
+    <!-- Botón del balón para el video -->
+    <img
+      src="assets/Balon-removebg-preview.png"
+      alt="Ver Video"
+      class="balon-btn"
+      onclick="abrirVideo('assets/kendrick_video.mp4')"
+    >
 
     <!-- Personajes -->
     <div class="personajes">
@@ -40,7 +46,15 @@
       <div class="personaje izquierda">
         <div class="popup popup-derecha" id="popup-kendrick">
           <span class="popup-close" onclick="cerrarPopup('kendrick')">&times;</span>
-          <p>La presentación de Kendrick Lamar en el show de medio tiempo del Super Bowl puede entenderse también como una protesta en la medida en que puso en el centro la experiencia de la comunidad afroamericana en Estados Unidos. A lo largo de su carrera, Lamar ha abordado repetidamente cómo el color de piel ha influido históricamente en las oportunidades, el trato institucional y la representación cultural dentro del país. En ese contexto, su presencia en uno de los escenarios más vistos del mundo funciona como una reivindicación simbólica: un artista negro utilizando un espacio tradicionalmente asociado con el patriotismo estadounidense para recordar que la historia del país también está marcada por desigualdades raciales. Esto adquiere un significado político particular frente al discurso promovido por Donald Trump y sectores de su movimiento, que con frecuencia han minimizado o rechazado la idea de racismo estructural en Estados Unidos. Así, el espectáculo puede leerse como un contraste entre dos narrativas: por un lado, una visión de Estados Unidos que se presenta como homogénea y ya reconciliada con su pasado racial, y por otro, la que Lamar representa, que insiste en que el color de piel sigue influyendo en la vida de millones de personas. De esta forma, la presentación no solo fue entretenimiento, sino también una intervención cultural que utilizó la música, la imagen y el simbolismo para cuestionar quién tiene voz en la narrativa nacional y cómo se reconocen las experiencias de las comunidades racializadas dentro del país.</p>
+          <div class="popup-card">
+            <p>La presentación de Kendrick Lamar en el show de medio tiempo del Super Bowl puede entenderse también como una protesta en la medida en que puso en el centro la experiencia de la comunidad afroamericana en Estados Unidos. A lo largo de su carrera, Lamar ha abordado repetidamente cómo el color de piel ha influido históricamente en las oportunidades, el trato institucional y la representación cultural dentro del país.</p>
+          </div>
+          <div class="popup-card">
+            <p>En ese contexto, su presencia en uno de los escenarios más vistos del mundo funciona como una reivindicación simbólica: un artista negro utilizando un espacio tradicionalmente asociado con el patriotismo estadounidense para recordar que la historia del país también está marcada por desigualdades raciales. Esto adquiere un significado político particular frente al discurso promovido por Donald Trump y sectores de su movimiento, que con frecuencia han minimizado o rechazado la idea de racismo estructural en Estados Unidos.</p>
+          </div>
+          <div class="popup-card">
+            <p>Así, el espectáculo puede leerse como un contraste entre dos narrativas: por un lado, una visión de Estados Unidos que se presenta como homogénea y ya reconciliada con su pasado racial, y por otro, la que Lamar representa, que insiste en que el color de piel sigue influyendo en la vida de millones de personas. De esta forma, la presentación no solo fue entretenimiento, sino también una intervención cultural que utilizó la música, la imagen y el simbolismo para cuestionar quién tiene voz en la narrativa nacional y cómo se reconocen las experiencias de las comunidades racializadas dentro del país.</p>
+          </div>
         </div>
         <img src="assets/Kendrick-removebg-preview.png" alt="Kendrick" class="img-clickeable" onclick="togglePopup('kendrick')">
       </div>
@@ -49,7 +63,15 @@
       <div class="personaje derecha">
         <div class="popup popup-izquierda" id="popup-trump">
           <span class="popup-close" onclick="cerrarPopup('trump')">&times;</span>
-          <p>Una posible explicación de por qué Donald Trump no reaccionó públicamente ni armó un escándalo frente a la presentación de Kendrick Lamar en el Super Bowl es que hacerlo habría amplificado aún más un mensaje que muchos interpretaron como una crítica política y racial directa. La música y el discurso artístico de Lamar suelen abordar temas como el racismo estructural, la desigualdad y la experiencia de las comunidades afroamericanas en Estados Unidos, por lo que una reacción fuerte por parte de Trump podría haber reforzado precisamente el debate sobre esas problemáticas y darle mayor visibilidad al mensaje del artista. En ese sentido, el silencio también puede leerse como una decisión estratégica: evitar convertir la presentación en una confrontación política directa que dominara la conversación pública y que, además, pudiera interpretarse como una respuesta a una denuncia sobre discriminación racial.</p>
+          <div class="popup-card">
+            <p>Una posible explicación de por qué Donald Trump no reaccionó públicamente ni armó un escándalo frente a la presentación de Kendrick Lamar en el Super Bowl es que hacerlo habría amplificado aún más un mensaje que muchos interpretaron como una crítica política y racial directa.</p>
+          </div>
+          <div class="popup-card">
+            <p>La música y el discurso artístico de Lamar suelen abordar temas como el racismo estructural, la desigualdad y la experiencia de las comunidades afroamericanas en Estados Unidos, por lo que una reacción fuerte por parte de Trump podría haber reforzado precisamente el debate sobre esas problemáticas y darle mayor visibilidad al mensaje del artista.</p>
+          </div>
+          <div class="popup-card">
+            <p>En ese sentido, el silencio también puede leerse como una decisión estratégica: evitar convertir la presentación en una confrontación política directa que dominara la conversación pública y que, además, pudiera interpretarse como una respuesta a una denuncia sobre discriminación racial.</p>
+          </div>
         </div>
         <img src="assets/Trump-removebg-preview.png" alt="Trump" class="img-clickeable" onclick="togglePopup('trump')">
       </div>

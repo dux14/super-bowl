@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/2026.css">
     <link rel="stylesheet" href="css/audio-controls.css">
   </head>
@@ -18,23 +18,30 @@
     </a>
 
     <!-- Botones ocultos en la tribuna (posiciones fijas sobre el background) -->
-    <button class="tribuna-btn" style="top:28%; left:8%;" onclick="abrirImagen('assets/fotobad1.jpeg')">
+    <button class="tribuna-btn" style="top:18%; left:8%;" onclick="abrirImagen('assets/fotobad1.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
-    <button class="tribuna-btn" style="top:22%; left:78%;" onclick="abrirImagen('assets/fotobad2.jpeg')">
+    <button class="tribuna-btn" style="top:12%; left:78%;" onclick="abrirImagen('assets/fotobad2.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
-    <button class="tribuna-btn" style="top:35%; left:25%;" onclick="abrirImagen('assets/fotobad3.jpeg')">
+    <button class="tribuna-btn" style="top:25%; left:25%;" onclick="abrirImagen('assets/fotobad3.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
-    <button class="tribuna-btn" style="top:32%; left:68%;" onclick="abrirImagen('assets/fotobad4.jpeg')">
+    <button class="tribuna-btn" style="top:22%; left:68%;" onclick="abrirImagen('assets/fotobad4.jpeg')">
       <span class="tribuna-icono">📸</span>
+      <span class="tribuna-label">FOTO</span>
     </button>
 
-    <!-- Botón en el marcador para el video -->
-    <button class="marcador-btn" onclick="abrirVideo('assets/bad bunny video.mp4')">
-      ▶ VER VIDEO
-    </button>
+    <!-- Botón del balón para el video -->
+    <img
+      src="assets/Balon-removebg-preview.png"
+      alt="Ver Video"
+      class="balon-btn"
+      onclick="abrirVideo('assets/bad bunny video.mp4')"
+    >
 
     <!-- Personajes -->
     <div class="personajes">
@@ -43,7 +50,15 @@
       <div class="personaje izquierda">
         <div class="popup popup-derecha" id="popup-badbunny">
           <span class="popup-close" onclick="cerrarPopup('badbunny')">&times;</span>
-          <p>La presentación de Bad Bunny en el Super Bowl LIV puede interpretarse como una protesta política porque utilizó uno de los escenarios mediáticos más influyentes del mundo para visibilizar no solo las luchas internas de Puerto Rico, sino también las tensiones políticas entre la isla y Estados Unidos. Al aparecer con símbolos como la bandera puertorriqueña y referencias a las movilizaciones sociales de 2019, el artista convirtió su actuación en una forma de reivindicación de identidad y resistencia. Además, su presencia también puede leerse como una crítica indirecta a las políticas migratorias y discursos nacionalistas promovidos por el gobierno de Donald Trump, que han afectado a comunidades latinas, utilizando la cultura y la música para cuestionar esas posturas desde un espacio tradicionalmente dominado por narrativas estadounidenses.</p>
+          <div class="popup-card">
+            <p>La presentación de Bad Bunny en el Super Bowl LIV puede interpretarse como una protesta política porque utilizó uno de los escenarios mediáticos más influyentes del mundo para visibilizar no solo las luchas internas de Puerto Rico, sino también las tensiones políticas entre la isla y Estados Unidos.</p>
+          </div>
+          <div class="popup-card">
+            <p>Al aparecer con símbolos como la bandera puertorriqueña y referencias a las movilizaciones sociales de 2019, el artista convirtió su actuación en una forma de reivindicación de identidad y resistencia.</p>
+          </div>
+          <div class="popup-card">
+            <p>Además, su presencia también puede leerse como una crítica indirecta a las políticas migratorias y discursos nacionalistas promovidos por el gobierno de Donald Trump, que han afectado a comunidades latinas, utilizando la cultura y la música para cuestionar esas posturas desde un espacio tradicionalmente dominado por narrativas estadounidenses.</p>
+          </div>
         </div>
         <img src="assets/Badbunny-removebg-preview.png" alt="Bad Bunny" class="img-clickeable" onclick="togglePopup('badbunny')">
       </div>
@@ -52,7 +67,15 @@
       <div class="personaje derecha">
         <div class="popup popup-izquierda" id="popup-trump">
           <span class="popup-close" onclick="cerrarPopup('trump')">&times;</span>
-          <p>La presentación de Bad Bunny en el Super Bowl LIV resultó molesta para Donald Trump y para parte de sus seguidores vinculados al movimiento Make America Great Again porque interpretaron el espectáculo como una politización de un evento considerado "patriótico" y representativo de Estados Unidos. El uso visible de símbolos de Puerto Rico y la reivindicación de identidades latinas fue visto por ese sector como un desafío a la idea de una cultura estadounidense homogénea, especialmente en un contexto en el que el discurso político de Trump enfatizaba el nacionalismo y políticas más restrictivas hacia la inmigración. Por esa razón, surgió la idea de promover una transmisión o narrativa "all-American", enfocada únicamente en símbolos y artistas percibidos como tradicionalmente estadounidenses, como una forma de contrarrestar lo que consideraban una apropiación política del evento y reafirmar su visión de identidad nacional.</p>
+          <div class="popup-card">
+            <p>La presentación de Bad Bunny en el Super Bowl LIV resultó molesta para Donald Trump y para parte de sus seguidores vinculados al movimiento Make America Great Again porque interpretaron el espectáculo como una politización de un evento considerado "patriótico" y representativo de Estados Unidos.</p>
+          </div>
+          <div class="popup-card">
+            <p>El uso visible de símbolos de Puerto Rico y la reivindicación de identidades latinas fue visto por ese sector como un desafío a la idea de una cultura estadounidense homogénea, especialmente en un contexto en el que el discurso político de Trump enfatizaba el nacionalismo y políticas más restrictivas hacia la inmigración.</p>
+          </div>
+          <div class="popup-card">
+            <p>Por esa razón, surgió la idea de promover una transmisión o narrativa "all-American", enfocada únicamente en símbolos y artistas percibidos como tradicionalmente estadounidenses, como una forma de contrarrestar lo que consideraban una apropiación política del evento y reafirmar su visión de identidad nacional.</p>
+          </div>
         </div>
         <img src="assets/Trump-removebg-preview.png" alt="Trump" class="img-clickeable" onclick="togglePopup('trump')">
       </div>

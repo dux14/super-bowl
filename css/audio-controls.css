@@ -1,9 +1,112 @@
-/* ===== Audio Toggle Button — Pixel Style ===== */
-.audio-toggle-btn {
+/* ===== Audio Controls Wrapper ===== */
+.audio-controls-wrap {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== Volume Slider Wrapper ===== */
+.volume-slider-wrap {
+  width: 48px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  border: 2px solid var(--red-primary, #ef4444);
+  clip-path: var(--clip-4, polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  ));
+  padding: 10px 0;
+}
+
+/* ===== Vertical Range Slider ===== */
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100px;
+  height: 6px;
+  background: transparent;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Track */
+.volume-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--red-primary, #ef4444) 0%,
+    var(--red-dark, #7f1d1d) 100%
+  );
+  border-radius: 3px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.volume-slider::-moz-range-track {
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--red-primary, #ef4444) 0%,
+    var(--red-dark, #7f1d1d) 100%
+  );
+  border-radius: 3px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Thumb */
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--red-primary, #ef4444);
+  border: 2px solid #fff;
+  clip-path: polygon(
+    4px 0, calc(100% - 4px) 0,
+    100% 4px, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 4px 100%,
+    0 calc(100% - 4px), 0 4px
+  );
+  cursor: pointer;
+  margin-top: -5px;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--red-primary, #ef4444);
+  border: 2px solid #fff;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+}
+
+/* ===== Audio Toggle Button — Pixel Style ===== */
+.audio-toggle-btn {
   width: 48px;
   height: 48px;
   font-size: 22px;
