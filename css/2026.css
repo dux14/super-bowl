@@ -9,18 +9,14 @@
 
 /* ===== Pixel clip-paths ===== */
 :root {
-  --clip-8: polygon(
-    8px 0, calc(100% - 8px) 0,
-    100% 8px, 100% calc(100% - 8px),
-    calc(100% - 8px) 100%, 8px 100%,
-    0 calc(100% - 8px), 0 8px
-  );
-  --clip-4: polygon(
-    4px 0, calc(100% - 4px) 0,
-    100% 4px, 100% calc(100% - 4px),
-    calc(100% - 4px) 100%, 4px 100%,
-    0 calc(100% - 4px), 0 4px
-  );
+  --clip-8: polygon(8px 0, calc(100% - 8px) 0,
+      100% 8px, 100% calc(100% - 8px),
+      calc(100% - 8px) 100%, 8px 100%,
+      0 calc(100% - 8px), 0 8px);
+  --clip-4: polygon(4px 0, calc(100% - 4px) 0,
+      100% 4px, 100% calc(100% - 4px),
+      calc(100% - 4px) 100%, 4px 100%,
+      0 calc(100% - 4px), 0 4px);
   --red-primary: #ef4444;
   --red-dark: #7f1d1d;
   --red-glow: rgba(239, 68, 68, 0.5);
@@ -261,43 +257,83 @@ body {
 }
 
 @keyframes tribunaPulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
-  50% { opacity: 1; transform: scale(1.08); box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); }
+
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  }
 }
 
-/* ===== Botón del Balón (reemplaza marcador-btn) ===== */
-.balon-btn {
+/* ===== Botón Play sobre el balón del fondo ===== */
+.balon-play-btn {
   position: fixed;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 69%;
+  left: 50.5%;
+  transform: translate(-50%, -50%);
   z-index: 10;
-  width: clamp(100px, 15vw, 180px);
-  height: auto;
+  width: clamp(36px, 3.5vw, 52px);
+  height: clamp(36px, 3.5vw, 52px);
+  border: 2px solid var(--red-primary);
+  clip-path: var(--clip-4);
+  background: rgba(0, 0, 0, 0.7);
   cursor: pointer;
-  transition: filter 0.3s ease, transform 0.3s ease;
-  animation: balonPulse 3s ease-in-out infinite;
-  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  animation: playPulse 2.5s ease-in-out infinite;
+  box-shadow: 3px 3px 0 var(--red-dark);
 }
 
-.balon-btn:hover {
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 50px rgba(255, 215, 0, 0.4));
-  transform: translateX(-50%) scale(1.1);
+.play-icon {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: clamp(5px, 0.7vw, 8px) 0 clamp(5px, 0.7vw, 8px) clamp(9px, 1.2vw, 14px);
+  border-color: transparent transparent transparent var(--red-primary);
+  margin-left: clamp(2px, 0.3vw, 4px);
+  filter: drop-shadow(0 0 3px var(--red-glow));
+  transition: border-color 0.3s ease, filter 0.3s ease;
+}
+
+.balon-play-btn:hover {
+  background: rgba(127, 29, 29, 0.5);
+  border-color: #f87171;
+  box-shadow: 2px 2px 0 var(--red-dark);
+  transform: translate(-50%, -50%) scale(1.15);
   animation: none;
 }
 
-.balon-btn:active {
-  transform: translateX(-50%) scale(0.95);
+.balon-play-btn:hover .play-icon {
+  border-color: transparent transparent transparent #f87171;
+  filter: drop-shadow(0 0 6px var(--red-glow));
 }
 
-@keyframes balonPulse {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+.balon-play-btn:active {
+  transform: translate(-50%, -50%) scale(0.95);
+  box-shadow: 0px 0px 0 var(--red-dark);
+}
+
+@keyframes playPulse {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.85;
   }
+
   50% {
-    transform: translateX(-50%) scale(1.05);
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
   }
 }
 
@@ -335,8 +371,15 @@ body {
 }
 
 @keyframes overlayIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .overlay-contenido img {
@@ -365,7 +408,7 @@ body {
   color: #fff;
   cursor: pointer;
   z-index: 210;
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
